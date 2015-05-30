@@ -6,7 +6,7 @@
 ///////////////////////////////////////////////////////////////////////                                                                  
 // Author: Patrick Lindsay
 
-;(function() {
+;(function () {
 
 	window.addEventListener('load', function() {
 		document.getElementById('place-invaders').addEventListener('click', function() {
@@ -27,12 +27,13 @@
 		this.gameOver = false;
 		this.win 	  = false;
 		this.bodies	  = [];
+		this.bodies.push(new Player(this));
 
 		spawnInvaders();
 
 		var tick = function() {
 			document.getElementById('fps').innerHTML = countFPS();
-			// this.update();
+			self.update();
 			requestAnimationFrame(tick);
 		};
 
@@ -42,7 +43,7 @@
 	Game.prototype = {
 		update : function() {
 			for(body in this.bodies) {
-				body.update();
+				this.bodies[body].update();
 			}
 		},
 
@@ -65,7 +66,7 @@
 
 	Player.prototype = {
 		update : function() {
-
+			
 		}
 	};
 
